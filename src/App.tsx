@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,6 +5,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import KnowledgeBasePage from "./pages/KnowledgeBase";
+import ArticlePage from "./pages/ArticlePage";
+import Calculators from "./pages/Calculators";
+import About from "./pages/About";
 
 // Category Pages
 import PersonalFinance from "./pages/categories/PersonalFinance";
@@ -32,6 +35,14 @@ const App = () => {
             <Route path="/categories/retirement" element={<Retirement />} />
             <Route path="/categories/business" element={<Business />} />
             <Route path="/categories/taxes" element={<Taxes />} />
+            
+            {/* Knowledge Base Routes */}
+            <Route path="/knowledge-base" element={<KnowledgeBasePage />} />
+            <Route path="/knowledge-base/article/:slug" element={<ArticlePage />} />
+            
+            {/* Other Main Routes */}
+            <Route path="/calculators" element={<Calculators />} />
+            <Route path="/about" element={<About />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
