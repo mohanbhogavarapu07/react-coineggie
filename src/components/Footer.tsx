@@ -53,6 +53,7 @@ export function Footer() {
             <ul className="grid gap-2">
               <li><Link to="/calculators" className="text-sm text-white/80 hover:text-finance-gold transition-colors">Calculators</Link></li>
               <li><Link to="/knowledge-base" className="text-sm text-white/80 hover:text-finance-gold transition-colors">Knowledge Base</Link></li>
+              <li><Link to="/ai-agents" className="text-sm text-white/80 hover:text-finance-gold transition-colors">AI Agents</Link></li>
               <li><Link to="/blog" className="text-sm text-white/80 hover:text-finance-gold transition-colors">Blog</Link></li>
               <li><Link to="/guides" className="text-sm text-white/80 hover:text-finance-gold transition-colors">Guides</Link></li>
               <li><Link to="/glossary" className="text-sm text-white/80 hover:text-finance-gold transition-colors">Financial Glossary</Link></li>
@@ -77,7 +78,7 @@ export function Footer() {
               © {new Date().getFullYear()} DigitSage. All rights reserved.
             </p>
             <p className="text-sm text-white/70">
-              Disclaimer: Information provided is for educational purposes only and should not be considered financial advice.
+              DigitSage is a product of FinTech Innovators Inc. Information provided is for educational purposes only.
             </p>
           </div>
         </div>

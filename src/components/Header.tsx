@@ -93,6 +93,11 @@ export function Header() {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
+                <Link to="/ai-agents" className="font-medium text-sm transition-colors hover:text-primary px-3 py-2">
+                  AI Agents
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
                 <Link to="/about" className="font-medium text-sm transition-colors hover:text-primary px-3 py-2">
                   About
                 </Link>
@@ -109,7 +114,9 @@ export function Header() {
                 className="w-full rounded-md border border-input bg-background pl-8 pr-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               />
             </div>
-            <Button>Sign In</Button>
+            <Link to="/sign-in">
+              <Button>Sign In</Button>
+            </Link>
           </div>
         </nav>
         
@@ -167,6 +174,13 @@ export function Header() {
               Knowledge Base
             </Link>
             <Link 
+              to="/ai-agents" 
+              className="text-sm transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              AI Agents
+            </Link>
+            <Link 
               to="/about" 
               className="text-sm transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
@@ -174,7 +188,13 @@ export function Header() {
               About
             </Link>
             <hr className="border-t border-border" />
-            <Button className="w-full">Sign In</Button>
+            <Link 
+              to="/sign-in" 
+              className="w-full"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Button className="w-full">Sign In</Button>
+            </Link>
           </nav>
         </div>
       )}

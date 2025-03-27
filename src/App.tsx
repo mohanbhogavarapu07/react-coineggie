@@ -9,6 +9,9 @@ import KnowledgeBasePage from "./pages/KnowledgeBase";
 import ArticlePage from "./pages/ArticlePage";
 import Calculators from "./pages/Calculators";
 import About from "./pages/About";
+import AIAgents from "./pages/AIAgents";
+import SignIn from "./pages/SignIn";
+import Contact from "./pages/Contact";
 
 // Category Pages
 import PersonalFinance from "./pages/categories/PersonalFinance";
@@ -39,6 +42,11 @@ const App = () => {
             {/* Knowledge Base Routes */}
             <Route path="/knowledge-base" element={<KnowledgeBasePage />} />
             <Route path="/knowledge-base/article/:slug" element={<ArticlePage />} />
+            
+            {/* New Routes */}
+            <Route path="/ai-agents" element={<AIAgents />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/contact" element={<Contact />} />
             
             {/* Other Main Routes */}
             <Route path="/calculators" element={<Calculators />} />
