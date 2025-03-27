@@ -3,7 +3,7 @@ import React from 'react';
 import { CategoryLayout } from '@/layouts/CategoryLayout';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, TrendingUp, DollarSign, CreditCard, Piggy, Shield } from 'lucide-react';
+import { ArrowRight, TrendingUp, DollarSign, CreditCard, PiggyBank, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const articles = [
@@ -50,7 +50,7 @@ const articles = [
     category: "Organization",
     level: "Beginner",
     readTime: "7 min",
-    icon: <Piggy className="h-5 w-5 text-finance-green" />,
+    icon: <PiggyBank className="h-5 w-5 text-finance-green" />,
   },
   {
     id: 6,
