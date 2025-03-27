@@ -7,6 +7,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
+// Category Pages
+import PersonalFinance from "./pages/categories/PersonalFinance";
+import Investments from "./pages/categories/Investments";
+import Retirement from "./pages/categories/Retirement";
+import Business from "./pages/categories/Business";
+import Taxes from "./pages/categories/Taxes";
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -18,6 +25,14 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            
+            {/* Category Routes */}
+            <Route path="/categories/personal-finance" element={<PersonalFinance />} />
+            <Route path="/categories/investments" element={<Investments />} />
+            <Route path="/categories/retirement" element={<Retirement />} />
+            <Route path="/categories/business" element={<Business />} />
+            <Route path="/categories/taxes" element={<Taxes />} />
+            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
