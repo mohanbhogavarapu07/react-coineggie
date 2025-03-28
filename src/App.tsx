@@ -20,6 +20,10 @@ import Retirement from "./pages/categories/Retirement";
 import Business from "./pages/categories/Business";
 import Taxes from "./pages/categories/Taxes";
 
+// Calculator Pages
+import SIPCalculator from "./pages/calculators/SIPCalculator";
+import HomeLoanEMICalculator from "./pages/calculators/HomeLoanEMICalculator";
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -43,13 +47,17 @@ const App = () => {
             <Route path="/knowledge-base" element={<KnowledgeBasePage />} />
             <Route path="/knowledge-base/article/:slug" element={<ArticlePage />} />
             
+            {/* Calculator Routes */}
+            <Route path="/calculators" element={<Calculators />} />
+            <Route path="/calculators/sip" element={<SIPCalculator />} />
+            <Route path="/calculators/home-loan-emi" element={<HomeLoanEMICalculator />} />
+            
             {/* New Routes */}
             <Route path="/ai-agents" element={<AIAgents />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/contact" element={<Contact />} />
             
             {/* Other Main Routes */}
-            <Route path="/calculators" element={<Calculators />} />
             <Route path="/about" element={<About />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

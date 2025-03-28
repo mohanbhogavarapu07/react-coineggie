@@ -16,19 +16,22 @@ const calculatorCategories = [
         title: 'SIP Calculator',
         description: 'Calculate returns on your systematic investment plans',
         icon: <BarChart3 className="h-5 w-5 text-finance-green" />,
-        path: '/calculators/sip'
+        path: '/calculators/sip',
+        implemented: true
       },
       {
         title: 'Lumpsum Calculator',
         description: 'Estimate returns on one-time investments',
         icon: <DollarSign className="h-5 w-5 text-finance-green" />,
-        path: '/calculators/lumpsum'
+        path: '/calculators/lumpsum',
+        implemented: false
       },
       {
         title: 'Compound Interest Calculator',
         description: 'Understand the power of compounding on your investments',
         icon: <LineChart className="h-5 w-5 text-finance-green" />,
-        path: '/calculators/compound-interest'
+        path: '/calculators/compound-interest',
+        implemented: false
       }
     ]
   },
@@ -41,19 +44,22 @@ const calculatorCategories = [
         title: 'Home Loan EMI Calculator',
         description: 'Calculate monthly installments for your home loan',
         icon: <Home className="h-5 w-5 text-finance-green" />,
-        path: '/calculators/home-loan-emi'
+        path: '/calculators/home-loan-emi',
+        implemented: true
       },
       {
         title: 'Personal Loan EMI Calculator',
         description: 'Estimate EMIs for personal loans',
         icon: <DollarSign className="h-5 w-5 text-finance-green" />,
-        path: '/calculators/personal-loan-emi'
+        path: '/calculators/personal-loan-emi',
+        implemented: false
       },
       {
         title: 'Loan Prepayment Calculator',
         description: 'See how prepayments can reduce your loan tenure and interest',
         icon: <Calculator className="h-5 w-5 text-finance-green" />,
-        path: '/calculators/loan-prepayment'
+        path: '/calculators/loan-prepayment',
+        implemented: false
       }
     ]
   },
@@ -66,13 +72,15 @@ const calculatorCategories = [
         title: 'Retirement Corpus Calculator',
         description: 'Estimate how much you need to save for retirement',
         icon: <PiggyBank className="h-5 w-5 text-finance-green" />,
-        path: '/calculators/retirement-corpus'
+        path: '/calculators/retirement-corpus',
+        implemented: false
       },
       {
         title: 'Pension Calculator',
         description: 'Calculate your retirement income from pension plans',
         icon: <Calculator className="h-5 w-5 text-finance-green" />,
-        path: '/calculators/pension'
+        path: '/calculators/pension',
+        implemented: false
       }
     ]
   },
@@ -85,13 +93,15 @@ const calculatorCategories = [
         title: 'Income Tax Calculator',
         description: 'Calculate your income tax liability',
         icon: <Calculator className="h-5 w-5 text-finance-green" />,
-        path: '/calculators/income-tax'
+        path: '/calculators/income-tax',
+        implemented: false
       },
       {
         title: 'Capital Gains Tax Calculator',
         description: 'Estimate tax on your investment gains',
         icon: <TrendingUp className="h-5 w-5 text-finance-green" />,
-        path: '/calculators/capital-gains-tax'
+        path: '/calculators/capital-gains-tax',
+        implemented: false
       }
     ]
   }
@@ -103,21 +113,24 @@ const featuredCalculators = [
     description: 'See how small, regular investments can grow into a significant corpus over time through the power of compounding.',
     icon: <BarChart3 className="h-6 w-6 text-finance-green" />,
     path: '/calculators/sip',
-    popular: true
+    popular: true,
+    implemented: true
   },
   {
     title: 'Home Loan EMI Calculator',
     description: 'Plan your home purchase by calculating EMIs based on loan amount, interest rate, and tenure.',
     icon: <Home className="h-6 w-6 text-finance-green" />,
     path: '/calculators/home-loan-emi',
-    popular: true
+    popular: true,
+    implemented: true
   },
   {
     title: 'Retirement Corpus Calculator',
     description: 'Estimate how much you need to save regularly to build your desired retirement corpus.',
     icon: <PiggyBank className="h-6 w-6 text-finance-green" />,
     path: '/calculators/retirement-corpus',
-    popular: true
+    popular: true,
+    implemented: false
   }
 ];
 
@@ -155,8 +168,10 @@ const Calculators = () => {
                   <CardDescription>{calculator.description}</CardDescription>
                 </CardHeader>
                 <CardFooter>
-                  <Button asChild className="w-full">
-                    <Link to={calculator.path}>Use Calculator</Link>
+                  <Button asChild className="w-full" disabled={!calculator.implemented}>
+                    <Link to={calculator.path}>
+                      {calculator.implemented ? 'Use Calculator' : 'Coming Soon'}
+                    </Link>
                   </Button>
                 </CardFooter>
               </Card>
@@ -189,8 +204,17 @@ const Calculators = () => {
                         <CardDescription>{calculator.description}</CardDescription>
                       </CardHeader>
                       <CardFooter>
-                        <Button variant="outline" asChild className="w-full hover:bg-finance-green hover:text-white">
-                          <Link to={calculator.path}>Use Calculator</Link>
+                        <Button 
+                          variant={calculator.implemented ? "outline" : "secondary"} 
+                          asChild 
+                          className={calculator.implemented 
+                            ? "w-full hover:bg-finance-green hover:text-white" 
+                            : "w-full bg-gray-200 text-gray-600 hover:bg-gray-200 cursor-not-allowed"}
+                          disabled={!calculator.implemented}
+                        >
+                          <Link to={calculator.implemented ? calculator.path : "#"}>
+                            {calculator.implemented ? 'Use Calculator' : 'Coming Soon'}
+                          </Link>
                         </Button>
                       </CardFooter>
                     </Card>
