@@ -23,6 +23,7 @@ import Taxes from "./pages/categories/Taxes";
 // Calculator Pages
 import SIPCalculator from "./pages/calculators/SIPCalculator";
 import HomeLoanEMICalculator from "./pages/calculators/HomeLoanEMICalculator";
+import StartupCostCalculator from "./pages/calculators/StartupCostCalculator";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +52,7 @@ const App = () => {
             <Route path="/calculators" element={<Calculators />} />
             <Route path="/calculators/sip" element={<SIPCalculator />} />
             <Route path="/calculators/home-loan-emi" element={<HomeLoanEMICalculator />} />
+            <Route path="/calculators/startup-cost" element={<StartupCostCalculator />} />
             
             {/* New Routes */}
             <Route path="/ai-agents" element={<AIAgents />} />

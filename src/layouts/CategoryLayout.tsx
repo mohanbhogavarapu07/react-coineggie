@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MainLayout } from './MainLayout';
 import { cn } from '@/lib/utils';
@@ -20,14 +19,18 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({
 }) => {
   return (
     <MainLayout>
-      <div className={cn("py-12", bgColor, textColor)}>
-        <div className="container">
-          <h1 className="text-4xl font-bold mb-4">{title}</h1>
-          {description && <p className="text-lg max-w-3xl opacity-90">{description}</p>}
+      <div className={cn("py-8 sm:py-10 md:py-12", bgColor, textColor)}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">{title}</h1>
+          {description && (
+            <p className="text-base sm:text-lg max-w-3xl opacity-90">{description}</p>
+          )}
         </div>
       </div>
-      <div className="container py-12">
-        {children}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12">
+        <div className="overflow-x-auto">
+          {children}
+        </div>
       </div>
     </MainLayout>
   );

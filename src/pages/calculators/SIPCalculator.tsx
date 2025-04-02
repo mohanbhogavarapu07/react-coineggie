@@ -250,7 +250,7 @@ const SIPCalculator = () => {
         </div>
       </div>
 
-      <div className="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-md">
+      {/* <div className="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-md">
         <h3 className="text-lg font-medium text-amber-800 mb-2">How to use this calculator?</h3>
         <p className="text-sm text-amber-700">
           A Systematic Investment Plan (SIP) allows you to invest a fixed amount regularly in mutual funds.
@@ -258,7 +258,7 @@ const SIPCalculator = () => {
           contribution, investment period, and expected annual return rate. The graph shows how your wealth 
           can grow with the power of compounding over the years.
         </p>
-      </div>
+      </div> */}
     </CalculatorLayout>
   );
 };
