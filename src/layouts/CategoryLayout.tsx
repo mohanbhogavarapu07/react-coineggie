@@ -18,8 +18,8 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({
   textColor = 'text-white'
 }) => {
   return (
-    <MainLayout>
-      <div className={cn("py-8 sm:py-10 md:py-12", bgColor, textColor)}>
+    <div>
+        <div className={cn("py-8 sm:py-10 md:py-12", bgColor, textColor)}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">{title}</h1>
           {description && (
@@ -32,6 +32,6 @@ export const CategoryLayout: React.FC<CategoryLayoutProps> = ({
           {children}
         </div>
       </div>
-    </MainLayout>
+      </div>
   );
 };

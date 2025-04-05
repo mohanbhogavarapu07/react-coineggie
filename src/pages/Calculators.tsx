@@ -1,9 +1,9 @@
-import React, { useState, useMemo, memo } from 'react';
+import React, { useState, useMemo, memo, useEffect } from 'react';
 import { MainLayout } from '@/layouts/MainLayout';
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-import { Calculator, PiggyBank, BarChart3, LineChart, TrendingUp, DollarSign, ShoppingCart, Target, Users, PieChart, Briefcase, Heart, Mail } from 'lucide-react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { Calculator, PiggyBank, BarChart3, LineChart, TrendingUp, DollarSign, ShoppingCart, Target, Users, PieChart, Briefcase, Heart, Mail, Calendar, Scale, Percent } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 // Business Sub-Categories
@@ -120,33 +120,33 @@ const calculatorCategories = [
       },
       {
         title: 'Win Rate Calculator',
-        description: 'Essential for B2B sales teams',
-        icon: <BarChart3 className="h-5 w-5 text-finance-green" />,
+        description: 'Calculate your sales win rate and analyze deal performance',
+        icon: <Target className="h-6 w-6" />,
         path: '/calculators/win-rate',
         implemented: true,
         featured: true
       },
       {
         title: 'Gross Profit Margin Calculator',
-        description: 'More searched than contribution margin',
-        icon: <Calculator className="h-5 w-5 text-finance-green" />,
+        description: 'Calculate and analyze your gross profit margin',
+        icon: <Calculator className="h-6 w-6" />,
         path: '/calculators/gross-margin',
         implemented: true,
         featured: true
       },
       {
         title: 'Upsell Revenue Calculator',
-        description: 'Growing SaaS need - calculate upsell potential',
-        icon: <LineChart className="h-5 w-5 text-finance-green" />,
+        description: 'Calculate potential revenue from customer upsells',
+        icon: <TrendingUp className="h-6 w-6" />,
         path: '/calculators/upsell-revenue',
         implemented: true,
         featured: true
       },
       {
         title: 'Average Deal Size Calculator',
-        description: 'CRM teams use this heavily',
-        icon: <DollarSign className="h-5 w-5 text-finance-green" />,
-        path: '/calculators/deal-size',
+        description: 'Calculate and analyze your average deal size',
+        icon: <DollarSign className="h-6 w-6" />,
+        path: '/calculators/average-deal-size',
         implemented: true,
         featured: true
       },
@@ -194,7 +194,7 @@ const calculatorCategories = [
         title: 'Facebook Ads Break-even ROAS',
         description: 'Niche but high intent searches - optimize your Facebook ad spend',
         icon: <Target className="h-5 w-5 text-finance-green" />,
-        path: '/calculators/facebook-ads-breakeven',
+        path: '/calculators/facebook-ads-break-even-roas',
         implemented: true,
         featured: true
       },
@@ -277,7 +277,56 @@ const calculatorCategories = [
     subCategory: 'hr',
     description: 'Payroll and workforce planning calculators',
     icon: <Users className="h-8 w-8 text-finance-green" />,
-    calculators: []
+    calculators: [
+      {
+        title: 'Salary Benchmarking Calculator',
+        description: 'Top HR search globally - compare salaries across roles and regions',
+        icon: <DollarSign className="h-6 w-6 text-finance-green" />,
+        path: '/calculators/salary-benchmarking',
+        implemented: true,
+        featured: true
+      },
+      {
+        title: 'Diversity Pay Gap Calculator',
+        description: 'Analyze and calculate pay gaps across different demographic groups',
+        icon: <Scale className="h-6 w-6 text-finance-green" />,
+        path: '/calculators/diversity-pay-gap',
+        implemented: true,
+        featured: true
+      },
+      {
+        title: 'Employee Turnover Cost Calculator',
+        description: 'Calculate the financial impact of employee turnover on your business',
+        icon: <Users className="h-6 w-6 text-finance-green" />,
+        path: '/calculators/employee-turnover',
+        implemented: true,
+        featured: true
+      },
+      {
+        title: 'Equity Dilution Calculator',
+        description: 'Calculate and analyze equity dilution scenarios for your startup',
+        icon: <Calculator className="h-6 w-6 text-finance-green" />,
+        path: '/calculators/equity-dilution',
+        implemented: true,
+        featured: true
+      },
+      {
+        title: 'Training ROI Calculator',
+        description: 'Calculate and analyze the return on investment for your training programs',
+        icon: <Calculator className="h-6 w-6 text-finance-green" />,
+        path: '/calculators/training-roi',
+        implemented: true,
+        featured: true
+      },
+      {
+        title: 'PTO Accrual Calculator',
+        description: 'Global teams - calculate PTO accrual across different policies',
+        icon: <Calendar className="h-5 w-5 text-finance-green" />,
+        path: '/calculators/pto-accrual',
+        implemented: false,
+        featured: true
+      }
+    ]
   },
   {
     title: 'Valuation & Funding',
@@ -321,8 +370,104 @@ const calculatorCategories = [
         title: 'Term Sheet Simulator',
         description: 'Negotiation prep - simulate different term sheet scenarios',
         icon: <LineChart className="h-5 w-5 text-finance-green" />,
-        path: '/calculators/term-sheet-simulator',
-        implemented: false,
+        path: '/calculators/term-sheet',
+        implemented: true,
+        featured: true
+      }
+    ]
+  },
+  {
+    title: 'Investment',
+    subCategory: 'investment',
+    description: 'Investment calculators for better financial planning',
+    icon: <LineChart className="h-8 w-8 text-finance-green" />,
+    calculators: [
+      {
+        title: 'SIP Calculator',
+        description: 'Calculate returns on your Systematic Investment Plan',
+        icon: <DollarSign className="h-6 w-6" />,
+        path: '/calculators/sip',
+        implemented: true,
+        featured: true
+      },
+      {
+        title: 'Lumpsum Calculator',
+        description: 'Calculate returns on your lump sum investment',
+        icon: <DollarSign className="h-6 w-6" />,
+        path: '/calculators/lumpsum',
+        implemented: true,
+        featured: true
+      },
+      {
+        title: 'SWP Calculator',
+        description: 'Calculate returns on your Systematic Withdrawal Plan',
+        icon: <DollarSign className="h-6 w-6" />,
+        path: '/calculators/swp',
+        implemented: true,
+        featured: true
+      },
+      {
+        title: 'Mutual Funds Calculator',
+        description: 'Calculate returns on your mutual fund investments',
+        icon: <DollarSign className="h-6 w-6" />,
+        path: '/calculators/mutual-funds',
+        implemented: true,
+        featured: true
+      },
+      {
+        title: 'FD Calculator',
+        description: 'Calculate fixed deposit returns and maturity amount',
+        icon: <PieChart className="h-5 w-5 text-finance-green" />,
+        path: '/calculators/fd',
+        implemented: true,
+        featured: true
+      },
+      {
+        title: 'RD Calculator',
+        description: 'Calculate recurring deposit returns and maturity amount',
+        icon: <Calendar className="h-5 w-5 text-finance-green" />,
+        path: '/calculators/rd',
+        implemented: true,
+        featured: true
+      },
+      {
+        title: 'Simple Interest Calculator',
+        description: 'Calculate simple interest on your investments',
+        icon: <Percent className="h-5 w-5 text-finance-green" />,
+        path: '/calculators/simple-interest',
+        implemented: true,
+        featured: true
+      },
+      {
+        title: 'Compound Interest Calculator',
+        description: 'Calculate compound interest on your investments',
+        icon: <TrendingUp className="h-5 w-5 text-finance-green" />,
+        path: '/calculators/compound-interest',
+        implemented: true,
+        featured: true
+      },
+      {
+        title: 'Step Up SIP Calculator',
+        description: 'Calculate returns on increasing SIP investments',
+        icon: <LineChart className="h-5 w-5 text-finance-green" />,
+        path: '/calculators/step-up-sip',
+        implemented: true,
+        featured: true
+      },
+      {
+        title: 'Stock Average Calculator',
+        description: 'Calculate average price of your stock investments',
+        icon: <BarChart3 className="h-5 w-5 text-finance-green" />,
+        path: '/calculators/stock-average',
+        implemented: true,
+        featured: true
+      },
+      {
+        title: 'XIRR Calculator',
+        description: 'Calculate extended internal rate of return',
+        icon: <Calculator className="h-5 w-5 text-finance-green" />,
+        path: '/calculators/xirr',
+        implemented: true,
         featured: true
       }
     ]
@@ -358,7 +503,14 @@ const CalculatorCard = memo(({ calculator }: { calculator: any }) => (
           asChild 
           className="w-full hover:bg-finance-green hover:text-white h-10 text-base"
         >
-          <Link to={calculator.path}>
+          <Link 
+            to={calculator.path}
+            state={{ 
+              from: '/calculators',
+              tab: calculator.subCategory === 'investment' ? 'investment' : 'business',
+              subtab: calculator.subCategory || 'finance'
+            }}
+          >
             Use Calculator
           </Link>
         </Button>
@@ -398,8 +550,17 @@ const SubTabContent = memo(({
 ));
 
 const Calculators = () => {
-  const [activeTab, setActiveTab] = useState("business");
-  const [activeSubTab, setActiveSubTab] = useState("finance");
+  const [searchParams] = useSearchParams();
+  const [activeTab, setActiveTab] = useState(searchParams.get('tab') || "business");
+  const [activeSubTab, setActiveSubTab] = useState(searchParams.get('subtab') || "finance");
+
+  // Update URL when tabs change
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams);
+    params.set('tab', activeTab);
+    params.set('subtab', activeSubTab);
+    window.history.replaceState({}, '', `?${params.toString()}`);
+  }, [activeTab, activeSubTab, searchParams]);
 
   // Memoize the calculator categories to prevent unnecessary re-renders
   const memoizedCalculatorCategories = useMemo(() => calculatorCategories, []);
@@ -417,7 +578,12 @@ const Calculators = () => {
   const subTabTriggers = useMemo(() => (
     <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
       {memoizedBusinessSubCategories.map((subCat) => (
-        <TabsTrigger key={subCat.id} value={subCat.id} className="flex items-center gap-2">
+        <TabsTrigger 
+          key={subCat.id} 
+          value={subCat.id} 
+          className="flex items-center gap-2"
+          onClick={() => setActiveSubTab(subCat.id)}
+        >
           {subCat.icon}
           <span className="hidden sm:inline">{subCat.title}</span>
         </TabsTrigger>
@@ -451,7 +617,7 @@ const Calculators = () => {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
         <Tabs 
-          defaultValue="business" 
+          defaultValue={activeTab}
           className="mb-4"
           value={activeTab}
           onValueChange={setActiveTab}
@@ -467,7 +633,7 @@ const Calculators = () => {
           {/* Business Calculators Tab with Sub-Tabs */}
           <TabsContent value="business" className="space-y-3">
             <Tabs 
-              defaultValue="finance" 
+              defaultValue={activeSubTab}
               className="mb-3"
               value={activeSubTab}
               onValueChange={setActiveSubTab}
@@ -487,9 +653,12 @@ const Calculators = () => {
 
           {/* Investment Tab */}
           <TabsContent value="investment" className="space-y-4 sm:space-y-6">
-            <div className="text-center py-6 sm:py-8">
-              <h2 className="text-lg sm:text-xl font-bold mb-3">Investment Calculators</h2>
-              <p className="text-sm sm:text-base text-muted-foreground">Coming soon - Investment calculators to help make better investment decisions</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {calculatorCategories
+                .find(cat => cat.subCategory === 'investment')
+                ?.calculators.map((calculator) => (
+                  <CalculatorCard key={calculator.path} calculator={calculator} />
+                ))}
             </div>
           </TabsContent>
         </Tabs>

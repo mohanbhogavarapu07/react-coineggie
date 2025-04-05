@@ -1,22 +1,20 @@
-import React from 'react';
-import { SidebarProvider } from '@/components/ui/sidebar';
+import React, { ReactNode } from 'react';
+import { Outlet } from 'react-router-dom';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 
-export const MainLayout: React.FC<{ children: React.ReactNode }> = ({ 
-  children 
-}) => {
+interface MainLayoutProps {
+  children?: ReactNode;
+}
+
+export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
-    <SidebarProvider>
-      <div className="flex flex-col min-h-screen w-full max-w-[100vw] overflow-x-hidden">
-        <Header />
-        <main className="flex-grow w-full">
-          <div className="w-full max-w-[100vw] mx-auto">
-            {children}
-          </div>
-        </main>
-        <Footer />
-      </div>
-    </SidebarProvider>
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-grow">
+        {children || <Outlet />}
+      </main>
+      <Footer />
+    </div>
   );
 };

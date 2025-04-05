@@ -1,16 +1,19 @@
-import { MainLayout } from '@/layouts/MainLayout';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Download, Mail, ArrowLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { toast } from '@/hooks/use-toast';
+import { ArrowLeft } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { MainLayout } from './MainLayout';
 
 interface CalculatorLayoutProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   title: string;
   description: string;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   showSeparateAboutSection?: boolean; // Control visibility of separate about section
+  calculatorContent?: React.ReactNode;
+  aboutContent?: React.ReactNode;
+  activeTab?: string;
+  activeSubTab?: string;
 }
 
 export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({
@@ -18,23 +21,18 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({
   title,
   description,
   icon,
-  showSeparateAboutSection = false // Default to false
+  showSeparateAboutSection = false,
+  calculatorContent,
+  aboutContent,
+  activeTab = 'business',
+  activeSubTab = 'finance'
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   
-  const handleDownload = () => {
-    toast({
-      title: "Download started",
-      description: "Your calculation results are being prepared for download",
-    });
-  };
-  
-  const handleEmail = () => {
-    toast({
-      title: "Email option",
-      description: "Email sharing will be available once you create an account",
-      variant: "default",
-    });
+  const handleBack = () => {
+    // Always navigate back to calculators with the correct tab state
+    navigate(`/calculators?tab=${activeTab}&subtab=${activeSubTab}`);
   };
   
   return (
@@ -43,7 +41,7 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({
         <Button 
           variant="outline" 
           className="h-10 px-4 py-2 mb-6" 
-          onClick={() => navigate('/calculators')}
+          onClick={handleBack}
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Calculators
@@ -63,46 +61,16 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({
                     <p className="text-muted-foreground">{description}</p>
                   </div>
                 </div>
-                
-                {/* <div className="flex gap-3">
-                  <Button 
-                    variant="outline"
-                    className="h-10 px-4 py-2"
-                    onClick={handleEmail}
-                  >
-                    <Mail className="mr-2 h-4 w-4" />
-                    Email
-                  </Button>
-                  <Button 
-                    className="h-10 px-4 py-2"
-                    onClick={handleDownload}
-                  >
-                    <Download className="mr-2 h-4 w-4" />
-                    Download
-                  </Button>
-                </div> */}
               </div>
               
-              {children}
-              
-              {/* First About section (merged in main layout with how-to-use styling) */}
-              {/* <div className="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-md">
-                <h3 className="text-lg font-medium text-amber-800 mb-2">About this calculator</h3>
-                <p className="text-sm text-amber-700">
-                  {description}
-                </p>
-              </div> */}
+              {calculatorContent || children}
             </Card>
 
-
-            <Card className="p-6 shadow-md">
-              <h3 className="text-xl font-bold mb-4">About this calculator</h3>
-                <div className="text-muted-foreground">
-                  <p>{description}</p>
-                </div>
-            </Card>
-
-            
+            {showSeparateAboutSection && aboutContent && (
+              <Card className="p-6 shadow-md">
+                {aboutContent}
+              </Card>
+            )}
           </div>
           
           {/* Right sidebar - space for advertisements */}
@@ -115,7 +83,6 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({
           </div>
         </div>
       </div>
-      
     </MainLayout>
   );
 };
