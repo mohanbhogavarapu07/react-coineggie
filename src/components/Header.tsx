@@ -1,7 +1,9 @@
 import React from 'react';
+import Logo from '@/components/ui/logo';
 import { Link } from 'react-router-dom';
 import { Search, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -42,19 +44,20 @@ const categories = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between max-w-[100vw]">
         <div className="flex items-center gap-2">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="h-8 w-8 rounded-full bg-finance-green flex items-center justify-center">
-              <span className="text-white font-bold text-lg">DS</span>
-            </span>
-            <span className="font-semibold text-xl text-finance-charcoal">DigitSage</span>
+          <Link to="/" className="flex items-center">
+            <Logo
+              size="md"
+              variant="default"
+              className="hover:opacity-80 transition-opacity"
+            />
           </Link>
         </div>
-        
+
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           <NavigationMenu>
@@ -103,7 +106,7 @@ export function Header() {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-          
+
           <div className="flex items-center gap-4">
             <div className="relative">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -118,7 +121,7 @@ export function Header() {
             </Link>
           </div>
         </nav>
-        
+
         {/* Mobile Menu Button */}
         <Button
           variant="ghost"
@@ -128,7 +131,7 @@ export function Header() {
           {mobileMenuOpen ? <X /> : <Menu />}
         </Button>
       </div>
-      
+
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 md:hidden py-4 border-t">
@@ -158,37 +161,37 @@ export function Header() {
               </ul>
             </div>
             <hr className="border-t border-border" />
-            <Link 
-              to="/calculators" 
+            <Link
+              to="/calculators"
               className="text-sm transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
               Calculators
             </Link>
-            <Link 
-              to="/knowledge-base" 
+            <Link
+              to="/knowledge-base"
               className="text-sm transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
               Knowledge Base
             </Link>
-            <Link 
-              to="/ai-agents" 
+            <Link
+              to="/ai-agents"
               className="text-sm transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
               AI Agents
             </Link>
-            <Link 
-              to="/about" 
+            <Link
+              to="/about"
               className="text-sm transition-colors hover:text-primary"
               onClick={() => setMobileMenuOpen(false)}
             >
               About
             </Link>
             <hr className="border-t border-border" />
-            <Link 
-              to="/sign-in" 
+            <Link
+              to="/sign-in"
               className="w-full"
               onClick={() => setMobileMenuOpen(false)}
             >
