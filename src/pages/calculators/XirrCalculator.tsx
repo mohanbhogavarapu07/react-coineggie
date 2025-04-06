@@ -17,7 +17,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Download, Plus, Trash2, HelpCircle } from 'lucide-react';
+import { Mail, Download, Plus, Trash2, HelpCircle, Calculator } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
@@ -31,6 +31,7 @@ import {
   ResponsiveContainer,
   ReferenceLine,
 } from "recharts";
+import { CalculatorLayout } from '@/layouts/CalculatorLayout';
 
 // Types
 interface CashFlow {
@@ -663,6 +664,11 @@ const XirrCalculator: React.FC = () => {
   };
 
   return (
+    <CalculatorLayout
+    title="XIRR Chart"
+    description ="Calculate extended internal rate of return"
+    icon={<Calculator className="h-5 w-5 text-finance-green" />}
+   >
     <div className="container mx-auto px-4 py-8">
       <Card className="calculator-container">
         <CardHeader>
@@ -834,6 +840,7 @@ const XirrCalculator: React.FC = () => {
         </CardContent>
       </Card>
     </div>
+    </CalculatorLayout>
   );
 };
 

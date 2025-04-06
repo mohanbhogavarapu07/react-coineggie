@@ -50,6 +50,7 @@ import SimpleInterestCalculator from './pages/calculators/SimpleInterestCalculat
 import CompoundInterestCalculator from './pages/calculators/CompoundintrestCalculator';
 import StepUpSipCalculator from './pages/calculators/SetUpSipCalculator';
 import StockAverageCalculator from './pages/calculators/StockAverageCalculator';
+import XirrCalculator from './pages/calculators/XirrCalculator';
 const queryClient = new QueryClient();
 
 function App() {
@@ -106,6 +107,7 @@ function App() {
               <Route path="calculators/compound-interest" element={<CompoundInterestCalculator />} />
               <Route path="calculators/step-up-sip" element={<StepUpSipCalculator />} />
               <Route path="calculators/stock-average" element={<StockAverageCalculator />} />
+              <Route path="calculators/xirr" element={<XirrCalculator />} />
               {/* Add more calculator routes here */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
