@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { MainLayout } from '@/layouts/MainLayout';
 import Index from "./pages/Index";
 import Calculators from "./pages/Calculators";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 // Investment Calculators
 import SIPCalculator from "./pages/calculators/investment/SIPCalculator";
@@ -93,6 +95,7 @@ function App() {
             <Route path="calculators/compound-interest" element={<CompoundInterestCalculator />} />
             <Route path="calculators/stock-average" element={<StockAverageCalculator />} />
             <Route path="calculators/xirr" element={<XIRRCalculator />} />
+
             
             {/* Business Calculators */}
             <Route path="calculators/startup-cost" element={<StartupCostCalculator />} />
@@ -141,6 +144,8 @@ function App() {
             <Route path="calculators/convertible-note" element={<ConvertibleNoteCalculator />} />
             <Route path="calculators/term-sheet" element={<TermSheetSimulator />} />
             <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

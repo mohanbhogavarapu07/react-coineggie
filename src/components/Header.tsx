@@ -99,6 +99,11 @@ export function Header() {
                   AI Agents
                 </Link>
               </NavigationMenuItem>
+              <NavigationMenu>
+              <Link to="/blog" className="font-medium text-sm transition-colors hover:text-primary px-3 py-2">
+                  Blog
+                </Link>
+                </NavigationMenu>
               <NavigationMenuItem>
                 <Link to="/about" className="font-medium text-sm transition-colors hover:text-primary px-3 py-2">
                   About
@@ -181,6 +186,13 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               AI Agents
+            </Link>
+            <Link 
+              to="/blog" 
+              className="text-sm transition-colors hover:text-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Blog
             </Link>
             <Link
               to="/about"
