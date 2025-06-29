@@ -9,6 +9,10 @@ import Index from "./pages/Index";
 import Calculators from "./pages/Calculators";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import KnowledgeBasePage from "./pages/KnowledgeBase";
+import AIAgents from "./pages/AIAgents";
+import About from "./pages/About";
+import Business from "./pages/categories/Business";
 
 // Investment Calculators
 import SIPCalculator from "./pages/calculators/investment/SIPCalculator";
@@ -143,6 +147,10 @@ function App() {
             <Route path="calculators/valuation-multiples" element={<ValuationMultiplesCalculator />} />
             <Route path="calculators/convertible-note" element={<ConvertibleNoteCalculator />} />
             <Route path="calculators/term-sheet" element={<TermSheetSimulator />} />
+            <Route path="/knowledge-base" element={<KnowledgeBasePage />} />
+            <Route path="/ai-agents" element={<AIAgents />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/categories/business" element={<Business />} />
             <Route path="*" element={<Navigate to="/" replace />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
